@@ -13,6 +13,23 @@
 @keyframes land{0%{transform:translateY(-11px) rotateX(-8deg) rotateY(-11deg) scale(1.07)}60%{transform:translateY(3px) rotateX(-8deg) rotateY(-11deg) scale(.97)}100%{transform:translateY(0) rotateX(-8deg) rotateY(-11deg) scale(1)}}
 @media(min-width:700px){.stage{height:265px}.hint{margin-top:32px}}
 @media(max-width:390px){.stage{height:190px}.hint{margin-top:30px}.board{row-gap:32px}}
+
+/* Refined compact game board and solid, seamless 3D dice */
+.arena{padding:20px 12px 22px}
+.board{row-gap:10px;column-gap:8px;max-width:680px}
+.station{justify-content:flex-start}
+.label{margin-bottom:3px}
+.stage{height:clamp(140px,23vw,205px);perspective:950px;perspective-origin:50% 50%}
+.cube{--size:clamp(112px,18vw,156px);transform:rotateX(0deg) rotateY(0deg)}
+.face,.face.front,.face:not(.front){border-radius:0;border:0;outline:1px solid rgba(17,34,61,.18);outline-offset:-1px;box-shadow:inset 0 0 16px #ffffff28;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.front{border:0;outline:3px solid #d0ff6d;outline-offset:-3px;box-shadow:0 0 13px #d0ff6d99,0 0 25px #d0ff6d44,inset 0 0 20px #ffffff55;z-index:1}
+.face.right,.face.left,.face.top,.face.bottom,.face.back{filter:brightness(.88)}
+.hint{margin-top:8px;padding:6px 12px}
+.actions{margin-top:17px}
+@keyframes tumble{0%{transform:translateY(0) rotateX(0deg) rotateY(0deg)}25%{transform:translateY(-23px) rotateX(290deg) rotateY(265deg)}55%{transform:translateY(-15px) rotateX(625deg) rotateY(625deg)}82%{transform:translateY(-6px) rotateX(715deg) rotateY(710deg)}100%{transform:translateY(0) rotateX(720deg) rotateY(720deg)}}
+@keyframes land{0%{transform:translateY(-7px) rotateX(0deg) rotateY(0deg) scale(1.04)}55%{transform:translateY(2px) rotateX(0deg) rotateY(0deg) scale(.985)}100%{transform:translateY(0) rotateX(0deg) rotateY(0deg) scale(1)}}
+@media(min-width:700px){.board{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.stage{height:195px}.cube{--size:142px}.hint{margin-top:8px}}
+@media(max-width:390px){.arena{padding:16px 7px 18px}.board{row-gap:8px;column-gap:2px}.stage{height:142px}.cube{--size:108px}.hint{margin-top:7px}}
 </style></head><body><main class="wrap"><header><span class="eyebrow">SPOTLIGHT 6 · SPEAKING GAME</span><h1>LOVE IT <span>OR</span><br>HATE IT?</h1><p class="subtitle">FOUR DICE · TWO OPINIONS · YOUR TURN</p></header><section class="example"><div class="example-title">HOW TO SPEAK · EXAMPLES</div><div class="example-grid"><p><strong>Pizza + delicious:</strong> I love pizza. I think it’s delicious!</p><p><strong>Football + boring:</strong> I hate football. I think it’s boring!</p></div></section><section class="arena"><div class="board" id="board"></div><div class="actions"><button class="mainbtn" id="all">🎲 ROLL ALL FOUR</button><button class="soundbtn" id="sound" aria-label="Toggle sound">🔊</button></div></section><p class="footer">А.П.ЕЛЬСИН | Александра Падафа</p></main><script>
 const topics=[['pizza','food'],['hamburgers','food'],['spaghetti','food'],['fish','food'],['chicken','food'],['football','activity'],['basketball','activity'],['skiing','activity'],['windsurfing','activity'],['going to the cinema','activity'],['eating out','activity'],['dancing','activity']].map(([word,kind])=>({word,kind}));
 const adj={food:{positive:['delicious','great','fantastic','wonderful','fine'],negative:['awful','terrible','disgusting','horrible']},activity:{positive:['exciting','interesting','enjoyable','great','fantastic','wonderful'],negative:['boring','dull','awful','terrible','horrible']}};
